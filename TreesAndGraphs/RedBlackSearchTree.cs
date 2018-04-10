@@ -18,20 +18,18 @@ namespace TreesAndGraphs
     ///    2.6 All red links lean left
     ///    2.7 Search for RB-BST is same as BST same is the case with Ceiling, Selection    
     /// </summary>
-    class BinarySearchTree
+    class RedBlackSearchTree
     {
-        private Node Root;
+        private const bool RED = true;
 
-        /// <summary>
-        /// Insret item into a BST
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
+        private const bool BLACK = false;
+
+        private RedBlackTreeNode Root;
+
         public void Put(int key, string value)
         {
             Root = Put(Root, key, value);
         }
-
 
         /// <summary>
         /// Fetch an item from BST
@@ -40,7 +38,7 @@ namespace TreesAndGraphs
         /// <returns></returns>
         public string Get(int? key)
         {
-            Node x = Root;
+            RedBlackTreeNode x = Root;
             while (x != null)
             {
                 if (key > x.Key)
@@ -59,6 +57,7 @@ namespace TreesAndGraphs
 
             return null;
         }
+
 
         /// <summary>
         /// Delete minimum i.e. leftmost item from BST.
@@ -81,7 +80,7 @@ namespace TreesAndGraphs
         /// Find minimum in BST
         /// </summary>
         /// <returns></returns>
-        public Node Min()
+        public RedBlackTreeNode Min()
         {
             return Min(Root);
         }
@@ -93,7 +92,7 @@ namespace TreesAndGraphs
         /// <returns></returns>
         public int? Floor(int key)
         {
-            Node x = Floor(Root, key);
+            RedBlackTreeNode x = Floor(Root, key);
             if (x == null)
                 return null;
 
@@ -107,7 +106,7 @@ namespace TreesAndGraphs
         /// <returns></returns>
         public int? Ceiling(int key)
         {
-            Node x = Ceiling(Root, key);
+            RedBlackTreeNode x = Ceiling(Root, key);
             if (x == null)
                 return null;
 
@@ -124,7 +123,7 @@ namespace TreesAndGraphs
             InOrder(Root, q);
             return q;
         }
-
+        
         /// <summary>
         /// Get size of BST
         /// </summary>
@@ -144,28 +143,43 @@ namespace TreesAndGraphs
             return Rank(key, Root);
         }
 
-        private Node Put(Node node, int key, string value)
+        /// <summary>
+        /// 1. Always mantain 1:1 correspondance to 2-3 trees by applying elementary red-black tree BST operations.
+        /// 2. Right child red, left child black - Rotate left
+        /// 3. Left child red, left-left grandchlild red - Rotate right
+        /// 4. Both child red -  Flip colors
+        /// </summary>
+        /// <param name="h"></param>
+        private RedBlackTreeNode Put(RedBlackTreeNode h, int key, string value)
         {
-            if (node == null)
+            if (h == null)
             {
-                var a = new Node(key, value);
-                a.Count += 1;
+                var a = new RedBlackTreeNode(key, value, RED);                
                 return a;
             }
 
-            if (key > node.Key)
-                node.Right = Put(node.Right, key, value);
-            else if (key < node.Key)
-                node.Left = Put(node.Left, key, value);
+            if (key > h.Key)
+                h.Right = Put(h.Right, key, value);
+            else if (key < h.Key)
+                h.Left = Put(h.Left, key, value);
             else
-                node.Value = value;
+                h.Value = value;            
 
-            node.Count = 1 + Size(node.Left) + Size(node.Right);
+            if (IsRedLink(h.Right) && !IsRedLink(h.Left)) // Lean left
+                h = LeftRotation(h);
 
-            return node;
+            if (IsRedLink(h.Left) && IsRedLink(h.Left.Left)) // Balance 4-nodes
+                h = RightRotation(h);
+
+            if (IsRedLink(h.Left) && IsRedLink(h.Right)) //  split 4-node
+                FlipColors(h);
+
+            h.Count = 1 + Size(h.Left) + Size(h.Right);
+
+            return h;
         }
 
-        private void InOrder(Node x, Queue<int?> q)
+        private void InOrder(RedBlackTreeNode x, Queue<int?> q)
         {
             if (x == null)
                 return;
@@ -175,7 +189,7 @@ namespace TreesAndGraphs
             InOrder(x.Right, q);
         }
 
-        private Node Floor(Node x, int key)
+        private RedBlackTreeNode Floor(RedBlackTreeNode x, int key)
         {
             if (x == null)
                 return null;
@@ -186,14 +200,14 @@ namespace TreesAndGraphs
             if (key < x.Key)
                 return Floor(x.Left, key);
 
-            Node t = Floor(x.Right, key);
+            RedBlackTreeNode t = Floor(x.Right, key);
             if (t != null)
                 return t;
 
             return x;
         }
 
-        private Node Ceiling(Node x, int? key)
+        private RedBlackTreeNode Ceiling(RedBlackTreeNode x, int? key)
         {
             if (x == null)
                 return null;
@@ -206,14 +220,14 @@ namespace TreesAndGraphs
                 return Ceiling(x.Right, key);
             }
 
-            Node t = Ceiling(x.Left, key);
+            RedBlackTreeNode t = Ceiling(x.Left, key);
             if (t != null)
                 return t;
 
             return x;
         }
 
-        private int Size(Node x)
+        private int Size(RedBlackTreeNode x)
         {
             if (x == null)
                 return 0;
@@ -221,7 +235,7 @@ namespace TreesAndGraphs
             return x.Count;
         }
 
-        private int? Rank(int key, Node x)
+        private int? Rank(int key, RedBlackTreeNode x)
         {
             if (x == null)
                 return 0;
@@ -234,7 +248,7 @@ namespace TreesAndGraphs
                 return Size(x.Left);
         }
 
-        private Node DeleteMinimum(Node x)
+        private RedBlackTreeNode DeleteMinimum(RedBlackTreeNode x)
         {
             if (x.Left == null)
                 return x.Right;
@@ -244,7 +258,7 @@ namespace TreesAndGraphs
             return x;
         }
 
-        private Node Delete(int key, Node x)
+        private RedBlackTreeNode Delete(int key, RedBlackTreeNode x)
         {
             if (x == null)
                 return null;
@@ -262,7 +276,7 @@ namespace TreesAndGraphs
                 if (x.Right == null)
                     return x.Left;
 
-                Node t = x;
+                RedBlackTreeNode t = x;
                 x = Min(t.Right);
                 x.Right = DeleteMinimum(t.Right);
                 x.Left = t.Left;
@@ -272,7 +286,7 @@ namespace TreesAndGraphs
             return x;
         }
 
-        private Node Min(Node x)
+        private RedBlackTreeNode Min(RedBlackTreeNode x)
         {
             if (x == null)
                 return null;
@@ -285,5 +299,48 @@ namespace TreesAndGraphs
             return x;
         }
 
+        private bool IsRedLink(RedBlackTreeNode x)
+        {
+            if (x == null)
+                return false;
+
+            return x.Color == RED;
+        }
+
+        /// <summary>
+        /// Mantains symmetric order and perfect black tree
+        /// </summary>
+        /// <param name="h"></param>
+        /// <returns></returns>
+        private RedBlackTreeNode LeftRotation(RedBlackTreeNode h)
+        {
+            RedBlackTreeNode x = h.Right;
+            h.Right = x.Left;
+            x.Left = h;
+            x.Color = h.Color;
+            h.Color = RED;
+            return x;
+        }
+
+        private RedBlackTreeNode RightRotation(RedBlackTreeNode h)
+        {
+            RedBlackTreeNode x = h.Left;
+            h.Left = x.Right;
+            x.Right = h;
+            x.Color = h.Color;
+            h.Color = RED;
+            return x;
+        }
+
+        /// <summary>
+        /// Re-color to split a temporary 4 node.
+        /// </summary>
+        /// <param name="h"></param>
+        private void FlipColors(RedBlackTreeNode h)
+        {
+            h.Color = RED;
+            h.Left.Color = BLACK;
+            h.Right.Color = BLACK;
+        }
     }
 }
