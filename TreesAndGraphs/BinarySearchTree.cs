@@ -139,17 +139,43 @@ namespace TreesAndGraphs
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public int? Rank(int key)
+        public int? Rank(int? key)
         {
             return Rank(key, Root);
         }
 
+        public int? RangeCount(int low, int high)
+        {
+            return !string.IsNullOrWhiteSpace(Get(high)) ? 1 + Rank(high) - Rank(low) : Rank(high) - Rank(low);
+        }
+
+        public void RangeValues(int low, int high)
+        {
+            Queue<int?> q = new Queue<int?>();
+            var a = Iterator();
+            foreach (var item in a)
+            {
+                if (item >= low && item <= high)
+                {
+                    q.Enqueue(item);
+                }
+            }
+
+            foreach (var item in q)
+            {
+                Console.Write(Get(item) + " ");
+            }
+
+            Console.WriteLine();
+        }
+
+        ////TODO: Understand count
         private Node Put(Node node, int key, string value)
         {
             if (node == null)
             {
                 var a = new Node(key, value);
-                a.Count += 1;
+                a.Count = 1;
                 return a;
             }
 
@@ -221,7 +247,7 @@ namespace TreesAndGraphs
             return x.Count;
         }
 
-        private int? Rank(int key, Node x)
+        private int? Rank(int? key, Node x)
         {
             if (x == null)
                 return 0;

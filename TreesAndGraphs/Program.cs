@@ -15,15 +15,27 @@ namespace TreesAndGraphs
         static void Main(string[] args)
         {
             BinarySearchTree bs = new BinarySearchTree();
-            bs.Put(12, "S");
-            bs.Put(5, "E");
-            bs.Put(3, "A");
-            bs.Put(23, "X");
-            bs.Put(4, "C");
-            bs.Put(11, "R");
-            bs.Put(9, "H");
-            bs.Put(10, "M");
+            bs.Put(18, "S"); //6
+            bs.Put(5, "E"); //2
+            bs.Put(3, "A"); //0
+            bs.Put(15, "R"); ///5
+            bs.Put(4, "C"); //1
+            bs.Put(9, "H"); //3
+            bs.Put(23, "X"); //7
+            bs.Put(10, "M"); //4
+           // bs.Put(12, "P"); //5
+            //bs.Put(6, "L");
             //Console.WriteLine(bs.Size());
+            //Console.WriteLine(bs.Rank(5));//2
+            //Console.WriteLine(bs.Rank(19));
+            Console.WriteLine(bs.RangeCount(5, 18));
+            bs.RangeValues(5, 18);
+            Console.WriteLine(bs.RangeCount(5, 19));
+            bs.RangeValues(5, 19);
+            Console.WriteLine(bs.RangeCount(6, 18));
+            bs.RangeValues(6, 18);
+            Console.WriteLine(bs.RangeCount(6, 19));
+            bs.RangeValues(6, 19);
             //var a = bs.Iterator();
             //foreach (var item in a)
             //{
@@ -37,29 +49,28 @@ namespace TreesAndGraphs
             //Console.WriteLine((bs.Min()).Value);
             //Console.WriteLine(bs.Get(10));
 
-            ///Console.WriteLine(bs.Rank(12));
+            //#region -- RBT test area
+            //RedBlackSearchTree rbs = new RedBlackSearchTree();
+            //rbs.Put(18, "S");
+            //rbs.Put(5, "E");
+            //rbs.Put(3, "A");
+            //rbs.Put(15, "R");
+            //rbs.Put(4, "C");
+            //rbs.Put(9, "H");
+            //rbs.Put(23, "X");
+            //rbs.Put(10, "M");
+            //rbs.Put(12, "P");
+            //rbs.Put(6, "L");
 
-            #region -- RBT test area
-            RedBlackSearchTree rbs = new RedBlackSearchTree();
-            rbs.Put(18, "S");
-            rbs.Put(5, "E");
-            rbs.Put(3, "A");
-            rbs.Put(15, "R");
-            rbs.Put(4, "C");
-            rbs.Put(9, "H");
-            rbs.Put(23, "X");
-            rbs.Put(10, "M");
-            rbs.Put(12, "P");
-            rbs.Put(6, "L");
+            ////var a = rbs.Iterator();
+            ////foreach (var item in a)
+            ////{
+            ////    Console.WriteLine(rbs.Get(item));
+            ////}
 
-            var a = rbs.Iterator();
-            foreach (var item in a)
-            {
-                Console.WriteLine(rbs.Get(item));
-            }
-
-            Console.WriteLine(rbs.Size());
-            #endregion
+            //Console.WriteLine(rbs.Size());
+            //Console.WriteLine(rbs.Rank(5));
+            //#endregion
 
 
 
