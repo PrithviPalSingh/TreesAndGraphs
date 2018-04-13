@@ -127,8 +127,37 @@ namespace TreesAndGraphs
             //lph.Put("E", "E");
             //Console.WriteLine(lph.Get("P"));
 
-            FileIndexing f = new FileIndexing();
-            f.Indexing();
+            //FileIndexing f = new FileIndexing();
+            //f.Indexing();
+
+            ////Sparse vector implementation
+            SparseVector[] st = new SparseVector[5];
+            st[0] = new SparseVector();
+            st[1] = new SparseVector();
+            st[2] = new SparseVector();
+            st[3] = new SparseVector();
+            st[4] = new SparseVector();
+            st[0].Put(1, .90);
+            st[1].Put(2, .36);
+            st[1].Put(3, .36);
+            st[1].Put(4, .18);
+            st[2].Put(3, .90);
+            st[3].Put(0, .90);
+            st[4].Put(0, .47);
+            st[4].Put(2, .47);
+
+            double[] x = { .05, .04, .36, .37, .19 };
+            double[] b = new double[5];
+
+            for (int i = 0; i < 5; i++)
+            {
+                b[i] = st[i].dot(x);
+            }
+
+            foreach (var item in b)
+            {
+                Console.WriteLine(item);
+            }
 
             Console.Read();
         }

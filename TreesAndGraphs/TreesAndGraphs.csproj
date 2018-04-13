@@ -51,6 +51,7 @@
     <Compile Include="RedBlackSearchTree.cs" />
     <Compile Include="RedBlackTreeNode.cs" />
     <Compile Include="SeperateChainingHash.cs" />
+    <Compile Include="SparseVector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
