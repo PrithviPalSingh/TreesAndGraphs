@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearchTree.cs" />
+    <Compile Include="FileIndexing.cs" />
     <Compile Include="LinearProbingHash.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
@@ -53,6 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="content\Drinks.txt" />
+    <Content Include="content\Fruits.txt" />
+    <Content Include="content\Vegetables.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

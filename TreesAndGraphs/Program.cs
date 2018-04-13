@@ -111,21 +111,24 @@ namespace TreesAndGraphs
             //sc.Put("E", "E");
             //Console.WriteLine(sc.Get("E"));    
 
-            LinearProbingHash<string, string> lph = new LinearProbingHash<string, string>();
-            lph.Put("S", "S");
-            lph.Put("E", "E");
-            lph.Put("A", "A");
-            lph.Put("R", "R");
-            lph.Put("C", "C");
-            lph.Put("H", "H");
-            lph.Put("E", "E");
-            lph.Put("X", "X");
-            lph.Put("A", "A");
-            lph.Put("M", "M");
-            lph.Put("P", "P");
-            lph.Put("L", "L");
-            lph.Put("E", "E");
-            Console.WriteLine(lph.Get("P"));
+            //LinearProbingHash<string, string> lph = new LinearProbingHash<string, string>();
+            //lph.Put("S", "S");
+            //lph.Put("E", "E");
+            //lph.Put("A", "A");
+            //lph.Put("R", "R");
+            //lph.Put("C", "C");
+            //lph.Put("H", "H");
+            //lph.Put("E", "E");
+            //lph.Put("X", "X");
+            //lph.Put("A", "A");
+            //lph.Put("M", "M");
+            //lph.Put("P", "P");
+            //lph.Put("L", "L");
+            //lph.Put("E", "E");
+            //Console.WriteLine(lph.Get("P"));
+
+            FileIndexing f = new FileIndexing();
+            f.Indexing();
 
             Console.Read();
         }
