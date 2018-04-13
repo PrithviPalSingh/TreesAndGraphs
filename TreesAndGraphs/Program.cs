@@ -73,24 +73,60 @@ namespace TreesAndGraphs
             //#endregion
 
             #region - Hash Functions Understanding
-            string str1 = "polygenelubricant";
-            int count = 0;
-            for (int i = 0; i < 10000; i++)
-            {
-                str1 = str1 + i;
-                //var abc = str1.GetHashCode() % 8;
-                //var abc = Math.Abs(str1.GetHashCode()) % 8;
-                var abc = (str1.GetHashCode() & 0X7fffffff) % 8;
-                if (abc < 0)
-                {
-                    count++;
-                }
-            }
+            //string str1 = "polygenelubricant";
+            //int count = 0;
+            //for (int i = 0; i < 10000; i++)
+            //{
+            //    str1 = str1 + i;
+            //    //var abc = str1.GetHashCode() % 8;
+            //    //var abc = Math.Abs(str1.GetHashCode()) % 8;
+            //    var abc = (str1.GetHashCode() & 0X7fffffff) % 8;
+            //    if (abc < 0)
+            //    {
+            //        count++;
+            //    }
+            //}
             //Console.WriteLine(Math.Abs(str1.GetHashCode()));
             //Console.WriteLine(str1.GetHashCode() & 0X7fffffff);
             //Console.WriteLine(-2 & 0X7fffffff);
-            Console.WriteLine("Done: " + count);
+            //Console.WriteLine("Done: " + count);
+
+            //Console.WriteLine("Aa".GetHashCode());
+            //Console.WriteLine("BB".GetHashCode());
             #endregion
+
+            //SeperateChainingHash<string, string> sc = new SeperateChainingHash<string, string>();
+            //sc.Put("S", "S");
+            //sc.Put("E", "E");
+            //sc.Put("A", "A");
+            //sc.Put("R", "R");
+            //sc.Put("C", "C");
+            //sc.Put("H", "H");
+            //sc.Put("E", "E");
+            //sc.Put("X", "X");
+            //sc.Put("A", "A");
+            //sc.Put("M", "M");
+            //sc.Put("P", "P");
+            //sc.Put("L", "L");
+            //sc.Put("E", "E");
+            //Console.WriteLine(sc.Get("E"));    
+
+            LinearProbingHash<string, string> lph = new LinearProbingHash<string, string>();
+            lph.Put("S", "S");
+            lph.Put("E", "E");
+            lph.Put("A", "A");
+            lph.Put("R", "R");
+            lph.Put("C", "C");
+            lph.Put("H", "H");
+            lph.Put("E", "E");
+            lph.Put("X", "X");
+            lph.Put("A", "A");
+            lph.Put("M", "M");
+            lph.Put("P", "P");
+            lph.Put("L", "L");
+            lph.Put("E", "E");
+            Console.WriteLine(lph.Get("P"));
+
             Console.Read();
         }
     }
