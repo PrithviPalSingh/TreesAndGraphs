@@ -244,7 +244,10 @@ namespace TreesAndGraphs
             //Console.WriteLine(bs.Rank("S"));
             //Console.WriteLine(bs.Rank("X"));
 
-            Console.WriteLine(bs.Min());
+            //Console.WriteLine(bs.Min());
+
+            Console.WriteLine(bs.RangeCount("A", "Q"));
+            bs.RangeValues("A", "Q");
         }
     }
 }

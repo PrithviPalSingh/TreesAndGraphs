@@ -168,30 +168,34 @@ namespace TreesAndGraphs
             return Rank(key, Root);
         }
 
-        //public int RangeCount(TKey low, TKey high)
-        //{
-        //    return !string.IsNullOrWhiteSpace(Get(high)) ? 1 + Rank(high) - Rank(low) : Rank(high) - Rank(low);
-        //}
+        public int RangeCount(TKey low, TKey high)
+        {
+            return Get(high) != null ? 1 + Rank(high) - Rank(low) : Rank(high) - Rank(low);
+        }
 
-        //public void RangeValues(TKey low, TKey high)
-        //{
-        //    Queue<TKey> q = new Queue<TKey>();
-        //    var a = Iterator();
-        //    foreach (var item in a)
-        //    {
-        //        if (item >= low && item <= high)
-        //        {
-        //            q.Enqueue(item);
-        //        }
-        //    }
+        public void RangeValues(TKey low, TKey high)
+        {
+            Queue<TKey> q = new Queue<TKey>();
+            var a = Iterator();
+            foreach (var item in a)
+            {
+                int cmp1 = item.CompareTo(low);
+                int cmp2 = item.CompareTo(high);
+                if (cmp1 == -1 || cmp2 == 1)
+                {
+                    continue;
+                }
 
-        //    foreach (var item in q)
-        //    {
-        //        Console.Write(Get(item) + " ");
-        //    }
+                q.Enqueue(item);
+            }
 
-        //    Console.WriteLine();
-        //}
+            foreach (var item in q)
+            {
+                Console.Write(Get(item) + " ");
+            }
+
+            Console.WriteLine();
+        }
 
         ////TODO: Understand count
         private GenericNode Put(GenericNode node, TKey key, TValue value)
