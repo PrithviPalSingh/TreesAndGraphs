@@ -14,7 +14,7 @@ namespace TreesAndGraphs
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            TestBSTGeneric();
+            TestRedBlackTree();
             Console.Read();
         }
 
@@ -77,12 +77,20 @@ namespace TreesAndGraphs
             rbs.Put(12, "P");
             rbs.Put(6, "L");
 
-            //var a = rbs.Iterator();
-            //foreach (var item in a)
-            //{
-            //    Console.WriteLine(rbs.Get(item));
-            //}
+            var a = rbs.Iterator();
+            foreach (var item in a)
+            {
+                Console.Write(rbs.Get(item) + " ");
+            }
+            Console.WriteLine();
+            rbs.Delete(6);
+            a = rbs.Iterator();
+            foreach (var item in a)
+            {
+                Console.Write(rbs.Get(item) + " ");
+            }
 
+            Console.WriteLine();
             Console.WriteLine(rbs.Size());
             Console.WriteLine(rbs.Rank(5));
             #endregion

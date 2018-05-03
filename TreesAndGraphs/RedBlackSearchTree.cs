@@ -16,7 +16,16 @@ namespace TreesAndGraphs
     ///    2.4 No node has two red link connected to it.
     ///    2.5 Every path from root to null link contains same number of black links
     ///    2.6 All red links lean left
-    ///    2.7 Search for RB-BST is same as BST same is the case with Ceiling, Selection    
+    ///    2.7 Search for RB-BST is same as BST same is the case with Ceiling, Selection  
+    ///    2.8 Set the color for node as RED if it is splitted from a 3-Node.
+    ///    2.9 Cases
+    ///         2.9.1 Right child red, left child black - LEFT ROTATE
+    ///         2.9.2 Right and Left child red - FLIP COLOR
+    ///         2.9.3 Left child and left grandchild red - RIGHT ROTATE
+    /// 3. For 2-3 tree
+    ///    3.1 2-Node: one key, two children
+    ///    3.2 3-Node: two keys, three children
+    ///    3.3 Every path from root to null node is of same length
     /// </summary>
     class RedBlackSearchTree
     {
