@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TreesAndGraphs
+namespace Trees
 {
     class LinearProbingHash<Key, Value>
     {

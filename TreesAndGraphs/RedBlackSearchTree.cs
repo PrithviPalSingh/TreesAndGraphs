@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TreesAndGraphs
+namespace Trees
 {
     /// <summary>
     /// 1. Left node key is smaller than key of root node and right node key is 
