@@ -21,7 +21,7 @@ namespace Trees
     class BinarySearchTree
     {
         private Node Root;
-
+        
         /// <summary>
         /// Insret item into a BST
         /// </summary>
@@ -153,20 +153,45 @@ namespace Trees
         {
             Queue<int?> q = new Queue<int?>();
             var a = Iterator();
-            foreach (var item in a)
+            foreach (var i in a)
             {
-                if (item >= low && item <= high)
+                if (i >= low && i <= high)
                 {
-                    q.Enqueue(item);
+                    q.Enqueue(i);
                 }
             }
 
-            foreach (var item in q)
+            foreach (int i in q)
             {
-                Console.Write(Get(item) + " ");
+                Console.Write(Get(i) + " ");
             }
 
             Console.WriteLine();
+
+            q = new Queue<int?>();
+            var item = Root;
+            ProcessRangeValues(item, low, high, q);
+            foreach (int i in q)
+            {
+                Console.Write(Get(i) + " ");
+            }
+
+            Console.WriteLine();
+        }
+
+        private void ProcessRangeValues(Node item, int low, int high, Queue<int?> q)
+        {
+            if (item == null)
+            {
+                return;
+            }
+
+            if (item.Key >= low && item.Key <= high)
+            {
+                q.Enqueue(item.Key);
+                ProcessRangeValues(item.Left, low, high, q);
+                ProcessRangeValues(item.Right, low, high, q);
+            }
         }
 
         ////TODO: Understand count

@@ -14,7 +14,7 @@ namespace Trees
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            TestRedBlackTree();
+            TestBinarySearchTree();
             Console.Read();
         }
 
@@ -35,24 +35,24 @@ namespace Trees
             bs.Put(9, "H"); //3
             bs.Put(23, "X"); //7
             bs.Put(10, "M"); //4
-                             //bs.Put(12, "P"); //5
-                             //bs.Put(6, "L");
-                             //Console.WriteLine(bs.Size());
-                             //Console.WriteLine(bs.Rank(5));//2
-                             //Console.WriteLine(bs.Rank(19));
-                             //Console.WriteLine(bs.RangeCount(5, 18));
-                             //bs.RangeValues(5, 18);
-                             //Console.WriteLine(bs.RangeCount(5, 19));
-                             //bs.RangeValues(5, 19);
-                             //Console.WriteLine(bs.RangeCount(6, 18));
-                             //bs.RangeValues(6, 18);
-                             //Console.WriteLine(bs.RangeCount(6, 19));
-                             //bs.RangeValues(6, 19);
-                             //var a = bs.Iterator();
-                             //foreach (var item in a)
-                             //{
-                             //    Console.WriteLine(bs.Get(item));
-                             //}
+            bs.Put(12, "P"); //5
+            bs.Put(6, "L");
+            //Console.WriteLine(bs.Size());
+            //Console.WriteLine(bs.Rank(5));//2
+            //Console.WriteLine(bs.Rank(19));
+            Console.WriteLine(bs.RangeCount(5, 18));
+            bs.RangeValues(5, 18);
+            Console.WriteLine(bs.RangeCount(5, 19));
+            bs.RangeValues(5, 19);
+            //Console.WriteLine(bs.RangeCount(6, 18));
+            //bs.RangeValues(6, 18);
+            //Console.WriteLine(bs.RangeCount(6, 19));
+            //bs.RangeValues(6, 19);
+            //var a = bs.Iterator();
+            //foreach (var item in a)
+            //{
+            //    Console.WriteLine(bs.Get(item));
+            //}
 
             //Console.WriteLine(bs.Get(5));
             //bs.DeleteMinimum();
