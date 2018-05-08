@@ -14,7 +14,7 @@ namespace Trees
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            TestBinarySearchTree();
+            TestOneDIntervalSearchTree();
             Console.Read();
         }
 
@@ -256,6 +256,27 @@ namespace Trees
 
             Console.WriteLine(bs.RangeCount("A", "Q"));
             bs.RangeValues("A", "Q");
+        }
+
+        static void TestOneDIntervalSearchTree()
+        {
+            OneDIntervalSearch<int, string> OneDST = new OneDIntervalSearch<int, string>();
+            OneDST.Put(17, 19);
+            OneDST.Put(5, 8);
+            OneDST.Put(4, 8);
+            OneDST.Put(15, 18);
+            OneDST.Put(7, 10);
+            OneDST.Put(21, 24);
+            OneDST.Put(16, 22);
+
+            Console.WriteLine(OneDST.Get(23, 25));
+            Console.WriteLine(OneDST.Get(12, 14));
+            Console.WriteLine(OneDST.Get(21, 23));
+            Console.WriteLine(OneDST.Get(6, 7));
+            Console.WriteLine(OneDST.Get(4, 6));
+            Console.WriteLine(OneDST.Get(2, 3));
+            Console.WriteLine(OneDST.Get(25, 26));
+            Console.Read();
         }
     }
 }

@@ -42,11 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OneDIntervalSearch.cs" />
     <Compile Include="BinarySearchTree.cs" />
     <Compile Include="BinarySearchTreeGeneric.cs" />
     <Compile Include="FileIndexing.cs" />
     <Compile Include="LinearProbingHash.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="OneDIntervalSearchNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackSearchTree.cs" />
