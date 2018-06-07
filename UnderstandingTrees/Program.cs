@@ -294,11 +294,28 @@ namespace Trees
                 st.Put(arr[i], i);
             }
 
-            Console.WriteLine(st.Contains("ty") ? st.Get("ty").ToString() : "N/A");
-            Console.WriteLine(st.Contains("she") ? st.Get("she").ToString() : "N/A");
-            Console.WriteLine(st.Contains("shells") ? st.Get("shells").ToString() : "N/A");
-            Console.WriteLine(st.Contains("the") ? st.Get("the").ToString() : "N/A");
-            Console.WriteLine(st.Contains("eth") ? st.Get("eth").ToString() : "N/A");
+            //Console.WriteLine(st.Contains("ty") ? st.Get("ty").ToString() : "N/A");
+            //Console.WriteLine(st.Contains("she") ? st.Get("she").ToString() : "N/A");
+            //Console.WriteLine(st.Contains("shells") ? st.Get("shells").ToString() : "N/A");
+            //Console.WriteLine(st.Contains("the") ? st.Get("the").ToString() : "N/A");
+            //Console.WriteLine(st.Contains("eth") ? st.Get("eth").ToString() : "N/A");
+
+            /**********All Keys***********/
+            //foreach (var item in st.Keys())
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            /************Prefix search***************/
+            //foreach (var item in st.KeysWithPrefix("sh"))
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            /*************Longest prefix****************/
+            Console.WriteLine(st.LongestPrefix("shells"));
+            Console.WriteLine(st.LongestPrefix("shels"));
+            Console.WriteLine(st.LongestPrefix("shellswww"));
         }
     }
 }

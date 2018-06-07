@@ -37,6 +37,57 @@ namespace Trees
             return Get(key) != null;
         }
 
+        public IEnumerable<string> Keys()
+        {
+            Queue<string> queue = new Queue<string>();
+            Collect(Root, "", queue);
+            return queue;
+        }
+
+        public IEnumerable<string> KeysWithPrefix(string prefix)
+        {
+            Queue<string> queue = new Queue<string>();
+            Node prefixRoot = get(Root, prefix, 0);
+            Collect(prefixRoot, prefix, queue);
+            return queue;
+        }
+
+        public string LongestPrefix(string query)
+        {
+            int length = SearchLongestPrefixValue(Root, query, 0, 0);
+            return query.Substring(0, length);
+        }
+
+        private int SearchLongestPrefixValue(Node x, string query, int d, int length)
+        {
+            if (x == null)
+                return length;
+
+            if (x.value != null)
+                length = d;
+
+            if (d == query.Length)
+                return length;
+
+            char c = query[d];
+
+            return SearchLongestPrefixValue(x.next[c], query, d + 1, length);
+        }
+
+        private void Collect(Node x, string prefix, Queue<string> q)
+        {
+            if (x == null)
+                return;
+
+            if (x.value != null)
+                q.Enqueue(prefix);
+
+            for (char c = (char)0; c < R; c++)
+            {
+                Collect(x.next[c], prefix + c, q);
+            }
+        }
+
         private Node put(Node x, string key, V value, int d)
         {
             if (x == null)
