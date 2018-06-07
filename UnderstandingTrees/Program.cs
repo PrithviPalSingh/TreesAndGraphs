@@ -14,7 +14,9 @@ namespace Trees
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            TestOneDIntervalSearchTree();
+            //TestOneDIntervalSearchTree();
+
+            TestTRIE();
             Console.Read();
         }
 
@@ -277,6 +279,26 @@ namespace Trees
             Console.WriteLine(OneDST.Get(2, 3));
             Console.WriteLine(OneDST.Get(25, 26));
             Console.Read();
+        }
+
+        static void TestTRIE()
+        {
+            string[] arr = { "by", "sea", "shells", "she", "sells", "shore", "the" };
+            TrieST<int?> st = new TrieST<int?>();
+            //foreach (var item in arr)
+            //{
+
+            //}
+            for (int i = 0; i < arr.Length; i++)
+            {
+                st.Put(arr[i], i);
+            }
+
+            Console.WriteLine(st.Contains("ty") ? st.Get("ty").ToString() : "N/A");
+            Console.WriteLine(st.Contains("she") ? st.Get("she").ToString() : "N/A");
+            Console.WriteLine(st.Contains("shells") ? st.Get("shells").ToString() : "N/A");
+            Console.WriteLine(st.Contains("the") ? st.Get("the").ToString() : "N/A");
+            Console.WriteLine(st.Contains("eth") ? st.Get("eth").ToString() : "N/A");
         }
     }
 }
